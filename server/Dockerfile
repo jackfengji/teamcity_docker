@@ -1,9 +1,10 @@
-FROM kukool/openjdk-java-7
+FROM dockerfile/java:oracle-java7
 MAINTAINER Jack Feng <jackfengji@gmail.com>
 
 VOLUME  ["/data/teamcity"]
 ENV TEAMCITY_DATA_PATH /data/teamcity
 
-ADD TeamCity /opt/TeamCity
+RUN wget -qO- http://download.jetbrains.com/teamcity/TeamCity-9.0.1.tar.gz | tar xz -C /opt
+ADD setup-mysql.sh /setup-mysql.sh
 EXPOSE 8111
-CMD ["/opt/TeamCity/bin/teamcity-server.sh", "run"]
+CMD ["/setup-mysql.sh"]

@@ -13,3 +13,4 @@ sed -i -e "s/:$ORIG_UID:$ORIG_GID:/:$DEV_UID:$DEV_GID:/" /etc/passwd
 sed -i -e "s/teamcity:x:$ORIG_GID:/teamcity:x:$DEV_GID:/" /etc/group
 
 chown -R ${DEV_UID}:${DEV_GID} ${ORIG_HOME}
+chown -R ${DEV_UID}:${DEV_GID} "/opt/teamcity-agent"

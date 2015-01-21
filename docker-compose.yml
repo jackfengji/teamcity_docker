@@ -4,14 +4,16 @@ server:
         - ./data:/data/teamcity
     ports:
         - "8111:8111"
+    external_links:
+        - mysql
 
 agent:
     build: agent
     links:
         - server
     environment:
-        - DEV_UID=1001
-        - DEV_GID=1001
+        - DEV_UID=103
+        - DEV_GID=65534
     volumes:
-        - /home/jackfengji/android-sdk:/opt/android-sdk
+        - /home/jackfengji/android-sdk-linux:/opt/android-sdk
         - ./agent/AgentSrc:/opt/teamcity-agent
